@@ -1,0 +1,10 @@
+Pablo,1
+Tarzia,3
+Dazzi,2
+Andy Dazzy,2
+Shiro,3
+Mandirola,3
+Bouzo,3
+Monte,1
+Perez, 2
+Guille, 3
