@@ -6,5 +6,5 @@ Shiro,3
 Mandirola,3
 Bouzo,3
 Monte,1
-Perez, 2
-Guille, 3
+Perez,2
+Guille,3
