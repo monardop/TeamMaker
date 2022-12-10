@@ -17,7 +17,6 @@ def list_maker(path:str) -> list:
     for n in molde:
         jugador = n.split(",")
         lista.append(jugador)
-    print(lista)
     return lista
 
 def gk_check(lista: list) -> list:
@@ -44,20 +43,21 @@ def seed_generator(lista: list)->list:
     jugadores = len(lista)//2
     seed= []
     while len(seed) != jugadores:
-        number = randint(0,len(lista)-1)
+        number = randint(0,len(lista)-2)
         if number not in seed:
             seed.append(number)
     return seed
 
 def random_picker(lista: list):
-    equipoA = []
     jugadores = seed_generator(lista)
-    print(jugadores)
+    print("El primer equipo:")
     for n in jugadores:
-        equipoA.append(lista[n])
+        print(lista[n][0])
         lista.remove(lista[n])
-    print(f"El equipo A es: {equipoA}")
-    print(f"El equipo b es: {lista}")
+    print("Segundo equipo:")
+    for n in lista:
+        print(n[0])
+
 
 
 
