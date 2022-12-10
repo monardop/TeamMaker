@@ -1,4 +1,5 @@
 import sys
+from random import randint
 
 def rute_check() -> str:
     try:
@@ -11,18 +12,22 @@ def rute_check() -> str:
 def list_maker(path:str) -> list:
     lista = []
     with open(path, "r") as f:
-        dato = f.read()
-        jugador = dato.split(',')
-        jugador[1].strip()
+        data = f.read()
+    molde = data.split("\n")
+    for n in molde:
+        jugador = n.split(",")
         lista.append(jugador)
+    print(lista)
     return lista
 
 def gk_check(lista: list) -> list:
     arqueros =  []
     for jugador in lista:
-        if jugador[1] == 1:
+        if int(jugador[1]) == 1:
             arqueros.append(jugador[0])
             lista.remove(jugador)
+
+    print(f"Los arqueros son: {arqueros}")
     return arqueros
 
 def team_maker(equipoA: list):
@@ -35,28 +40,24 @@ def team_maker(equipoA: list):
     for n in lista:
         print(n[0])
 
-def random_picker(lista: list):
-    jugadores = (len(lista)-len(arqueros)-1) // 2
-    points = 0
-    equipoA = []
-    
-    for n in lista:
-        points += n[1]
-    
-    points /= 2
+def seed_generator(lista: list)->list:
+    jugadores = len(lista)//2
+    seed= []
+    while len(seed) != jugadores:
+        number = randint(0,len(lista)-1)
+        if number not in seed:
+            seed.append(number)
+    return seed
 
-    while True:
-        seed = range(jugadores)
-        seed.sort()
-        sum = 0
-        for n in seed:
-            equipoA.append(lista[n])
-            sum += lista[n][1]
-        if sum - points > -2 and sum - points < 2:
-            team_maker(equipoA)
-            break
-        else:
-            equipoA.clear()
+def random_picker(lista: list):
+    equipoA = []
+    jugadores = seed_generator(lista)
+    print(jugadores)
+    for n in jugadores:
+        equipoA.append(lista[n])
+        lista.remove(lista[n])
+    print(f"El equipo A es: {equipoA}")
+    print(f"El equipo b es: {lista}")
 
 
 
